@@ -1,5 +1,5 @@
 # Digger
-Port of an old KC85-game for Gamebuino
+Port of a Port of an old KC85-game for Gamebuino, for Arduboy using https://github.com/akkera102/08_gamebuino 
 <br/>
 <img src="https://github.com/scmar/Digger/blob/master/bitmaps/L5_Monster.gif"/></br>
 
