@@ -1,5 +1,5 @@
 #include <SPI.h>
-#include <Gamebuino.h>
+#include "lib_Gamebuino.h"
 #include <EEPROM.h>
 #include "Defines.h"
 #include "Sprites.h"
@@ -23,7 +23,7 @@ const char* const menu[MENULENGTH] PROGMEM = {
   strSave,
   lvlUp,
   lvlDown,
-  strMode,
+ // strMode,
 };
 
 byte world[WORLD_W][WORLD_H];
@@ -119,9 +119,9 @@ void loop() {
         updateCursor();
         updatePhysics();
         drawWorld();
-        if (lives <1 || lives>LIVES) {
+        if (lives < 1 || lives > LIVES) {
           //curLevel=NUM_LEVELS-2;
-          gamestate=GAMEOVER;
+          gamestate = GAMEOVER;
         }
         break;
       case GAMEOVER:
@@ -174,7 +174,6 @@ void initWorld(byte _level) {
       setTile(getBits(_level, CODELENGTH));
       worldpos++;
     }
-
   }
 }
 
@@ -206,7 +205,7 @@ void setTile( byte sprite) {
   }
 }
 void nextLevel() {
-  if (curLevel < NUM_LEVELS-3) {
+  if (curLevel < NUM_LEVELS - 3) {
     (gamemode == EASY) ? cureasy++ : curhard++;
     maxeasy = max(maxeasy, cureasy);
     maxhard = max(maxhard, curhard);
@@ -250,10 +249,4 @@ void saveEEPROM() {
   EEPROM.write(6, lives);
   EEPROM.write(8, curhard);
   EEPROM.write(9, maxhard);
-
-
 }
-
-/*
-"C:\Program Files\Arduino\hardware\tools\avr/bin/avr-objdump" -h -S "C:\Users\xxxxxxx\AppData\Local\Temp\buildxxxxxxxxx.tmp\Digger.cpp.elf" > digger.lst
-*/
